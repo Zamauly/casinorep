@@ -1,9 +1,7 @@
 package com.reporter.pdf.casinorep.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -15,14 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.reporter.pdf.casinorep.commons.ResourcesConstants;
 import com.reporter.pdf.casinorep.dto.PDFReporterDTO;
 import com.reporter.pdf.casinorep.dto.PDFRequestDTO;
 import com.reporter.pdf.casinorep.dto.resources.RequestDTO;
 import com.reporter.pdf.casinorep.dto.resources.ResponseDTO;
 import com.reporter.pdf.casinorep.prototype.ReporterPDFPrototype;
 import com.reporter.pdf.casinorep.services.ReporterPDFService;
-import com.reporter.pdf.casinorep.utils.FileReporterUtil;
 import com.reporter.pdf.casinorep.utils.ReporterDateTimeUtil;
 
 @RestController
