@@ -6,7 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.reporter.pdf.casinorep.commons.ResourcesConstants;
+import com.reporter.pdf.casinorep.commons.ResourcesConstants.ValidDependencyFormats;
 import com.reporter.pdf.casinorep.commons.ResourcesConstants.ValidImageFormats;
+import com.reporter.pdf.casinorep.singleton.ReporterPropertiesSingleton;
 
 public class FileReporterUtil {
 
@@ -30,7 +32,23 @@ public class FileReporterUtil {
 		String imgExt = imageName.substring(imageName.lastIndexOf(ResourcesConstants.DOT_CHAR)).trim();
 		logger.debug("Get image extension : {}", imgExt);
 		
-		return ValidImageFormats.evalTipes(imgExt);
+		return ValidImageFormats.evalTypes(imgExt);
+	}
+	
+
+	public static String validateDependencyLogo(String subsidiaryName) {
+		 String dependencyLogo = ValidDependencyFormats.evalDependencyLogo(subsidiaryName);
+		if(dependencyLogo != null) 
+			switch(dependencyLogo) {
+				case ResourcesConstants.LOGO_ONE:
+					dependencyLogo = ReporterPropertiesSingleton.getInstance().getAppResourcesProperties().getBase_images().getLogo_aseco();
+					break;
+				case ResourcesConstants.LOGO_TWO:
+				default:
+					dependencyLogo = ReporterPropertiesSingleton.getInstance().getAppResourcesProperties().getBase_images().getLogo_limpo();
+					break;
+			}
+		return dependencyLogo;
 	}
 	
 }

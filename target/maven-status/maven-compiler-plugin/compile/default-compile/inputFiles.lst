@@ -5,6 +5,8 @@
 /home/asus13/Documents/projects/casinorep/src/main/java/com/reporter/pdf/casinorep/dto/resources/ResponseDTO.java
 /home/asus13/Documents/projects/casinorep/src/main/java/com/reporter/pdf/casinorep/services/impl/ReporterPDFServiceImpl.java
 /home/asus13/Documents/projects/casinorep/src/main/java/com/reporter/pdf/casinorep/services/ReporterPDFService.java
+/home/asus13/Documents/projects/casinorep/src/main/java/com/reporter/pdf/casinorep/singleton/ReporterPropertiesSingleton.java
+/home/asus13/Documents/projects/casinorep/src/main/java/com/reporter/pdf/casinorep/config/ResourcesProperties.java
 /home/asus13/Documents/projects/casinorep/src/main/java/com/reporter/pdf/casinorep/dto/PDFRequestDTO.java
 /home/asus13/Documents/projects/casinorep/src/main/java/com/reporter/pdf/casinorep/CasinorepApplication.java
 /home/asus13/Documents/projects/casinorep/src/main/java/com/reporter/pdf/casinorep/controller/TestController.java

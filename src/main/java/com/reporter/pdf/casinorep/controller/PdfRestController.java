@@ -65,65 +65,14 @@ public class PdfRestController {
 
 		logger.debug("Post Req Reporter TEST type: {}", reqBody.getRequest_type());
 
-		logger.debug("Post Req Reporter TEST name: {}", reqBody.getRequest_body().getReport_name());
+//		logger.debug("Post Req Reporter TEST name: {}", reqBody.getRequest_body().getReport_name());
 
 		logger.debug("Post Req Reporter TEST key: {}", reqBody.getRequest_body().getSubsidiary_name());
 
 		logger.debug("Post Req Reporter TEST key: {}", reqBody.getRequest_body().getReport_date());
 
-		
 		try {
-			Date reportDate = ReporterDateTimeUtil.getDateFromString(reqBody.getRequest_body().getReport_date(), "dd-mm-yyyy");
-			List<String> imageList = new ArrayList<String>(); 
-			imageList.add("/home/asus13/Documents/projects/casinorep/resources/images-api/test-1.png");
-			imageList.add("/home/asus13/Documents/projects/casinorep/resources/images-api/test-2.xnl");
-			imageList.forEach(imageItem -> {
-				if(!FileReporterUtil.validateImageFormat(imageItem)) throw new RuntimeException(ResourcesConstants.FORMAT_IMG_ERROR_MSG.concat(imageItem));
-			});
-			String reportName = FileReporterUtil.getDateFormatedFileName(reqBody.getRequest_body().getReport_name(), reportDate);
-			ReporterPDFPrototype reporter = new ReporterPDFPrototype.ReporterPDFPrototypeBuilder("ASECO", imageList, "/home/asus13/Documents/projects/casinorep/resources/images-api/aseco.png")
-					.reportDate(reportDate)
-					.reportName(reportName)
-					.subsidiaryName(reqBody.getRequest_body().getSubsidiary_name())
-					.build();
-	
-			logger.debug("Post Prototype Reporter TEST type: {}", reporter.getReportName());
-	
-			logger.debug("Post Prototype Reporter TEST name: {}", reporter.getSubsidiaryName());
-	
-			logger.debug("Post Prototype Reporter TEST key: {}", reporter.getLogoPath());
-	
-			logger.debug("Post Prototype Reporter TEST hashCode: {}", reporter.hashCode());
-			
-			ReporterPDFPrototype cloned_reporter = reporter.clone();
-			reportName = FileReporterUtil.getDateFormatedFileName(reqBody.getRequest_body().getReport_name(), reportDate);
-			
-			cloned_reporter.setReportName(reportName);
-			cloned_reporter.setSubsidiaryName(reqBody.getRequest_body().getSubsidiary_name()+" : CLON");
-			cloned_reporter.setReportDate(ReporterDateTimeUtil.getDateFromString("24-01-2024", "dd-mm-yyyy"));
-			/*
-			 * List<String> imageList = new ArrayList<String>(); imageList.add(
-			 * "/home/asus13/Documents/projects/casinorep/resources/images-api/test-1.png");
-			 * imageList.add(
-			 * "/home/asus13/Documents/projects/casinorep/resources/images-api/test-2.png");
-			 * cloned_reporter.setDefaultImageList(imageList);
-			 */
-			logger.debug("Post ClonedPrototype Reporter TEST type: {}", cloned_reporter.getReportName());
-
-			logger.debug("Post ClonedPrototype Reporter TEST name: {}", cloned_reporter.getSubsidiaryName());
-
-			logger.debug("Post ClonedPrototype Reporter TEST key: {}", cloned_reporter.getLogoPath());
-
-			logger.debug("Post ClonedPrototype Reporter TEST hashCode: {}", cloned_reporter.hashCode());
-			
-			PDFReporterDTO reporterDto =  new PDFReporterDTO.PDFReporterDTOBuilder(cloned_reporter).build();
-
-			logger.debug("Post DTO Reporter TEST type: {}", reporterDto.getReportName());
-
-			logger.debug("Post DTO Reporter TEST name: {}", reporterDto.getSubsidiaryName());
-
-			logger.debug("Post DTO Reporter TEST hashCode: {}", reporterDto.hashCode());
-			
+			PDFReporterDTO reporterDto = reporterService.generatePDF(reqBody.getRequest_body());
 			if(reqBody.getRequest_type().equals("generate-pdf")) {
 
 				//response_data.setMessage("logged-in"); 

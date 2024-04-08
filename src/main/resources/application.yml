@@ -1,21 +1,18 @@
 spring:
  application:
-  name: 'casinorep'
+  name: casinorep
+  
 logging:
  level:
   com.reporter.pdf.casinorep: TRACE
-resources:
- path:
-  url:'/home/asus13/Documents/projects/casinorep/resources'
- base_images:
-  path: '/assets/img/basic/'
-  files_logo:
-   logo_aseco:'LogoAsecco.jpg'
-   logo_limpo:'Logolimposervices.jpg'
-  files_base:
-   base_image_1: 'ProductoCleaner_1.jpg'
-   base_image_2: 'ProductoCleaner_2.jpg'
- documental_images:
-  path: '/documental/images/'
- documental_pdfs:
-  path: '/documental/pdfs/'
+  
+rsc_path: /home/asus13/Documents/projects/casinorep/resources
+base_images:
+ path: /assets/img/basic/
+ logo_aseco: LogoAsecco.jpg
+ logo_limpo: Logolimposervices.jpg
+ files_base:
+  - ProductoCleaner_1.jpg
+  - ProductoCleaner_2.jpg
+documental_images: /documental/images/
+documental_pdfs: /documental/pdfs/

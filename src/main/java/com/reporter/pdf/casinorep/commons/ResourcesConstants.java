@@ -13,13 +13,15 @@ public class ResourcesConstants {
 	public static final String SETTED_NAME= "%SETTEDNAME%";
 	public static final String SETTED_DATE= "%SETTEDDATE%";
 	protected static final String BASE_FILENAME= "casino-pdf-report";
+	public static final String LOGO_ONE= "asecco";
+	public static final String LOGO_TWO= "limpmex";
 	
 	public static ValidImageFormats ACCEPTED_IMAGE_FORMATS;
 	
 	public enum ValidImageFormats {
-	    JPEG ("jpeg"), 
-	    JPG ("jpg"), 
-	    PNG ("png");
+	    JPEG (".jpeg"), 
+	    JPG (".jpg"), 
+	    PNG (".png");
 
 		private final String pictureFormat;
 		
@@ -29,7 +31,7 @@ public class ResourcesConstants {
 
 	    private String pictureFormat() { return pictureFormat; }
 	    
-	    public static Boolean evalTipes(String incomingPictureType) {
+	    public static Boolean evalTypes(String incomingPictureType) {
 	        for (ValidImageFormats picType : ValidImageFormats.values()) {
 	        	if(picType.pictureFormat().equals(incomingPictureType)){
 	        		return true;
@@ -39,7 +41,45 @@ public class ResourcesConstants {
 	    }
 		
 	}
-	
+	public enum ValidDependencyFormats {
+	    DPDCY_00 ("las barreras","asecco"),
+	    DPDCY_01 ("laz barreras","asecco"),
+	    DPDCY_02 ("laz barreraz","asecco"),
+	    DPDCY_03 ("hipodromo","asecco"), 
+	    DPDCY_04 ("hipódromo","asecco"), 
+	    DPDCY_05 ("rosarito","limpmex"), 
+	    DPDCY_06 ("benito juarez","limpmex"), 
+	    DPDCY_07 ("benito juárez","limpmex"), 
+	    DPDCY_08 ("centro civico","limpmex"),
+	    DPDCY_09 ("centro cívico","limpmex"),
+	    DPDCY_10 ("civico","limpmex"),
+	    DPDCY_11 ("civíco","limpmex"),
+	    DPDCY_12 ("lazaro cardenas","limpmex"),
+	    DPDCY_13 ("lázaro cardenas","limpmex"),
+	    DPDCY_14 ("lazaro cárdenas","limpmex"),
+	    DPDCY_15 ("lázaro cárdenas","limpmex");
+
+		private final String subsidiaryName;
+		private final String regionDependency;
+		
+		ValidDependencyFormats(String subsidiaryName, String regionDependency) {
+			this.subsidiaryName = subsidiaryName;
+			this.regionDependency = regionDependency;
+		}
+
+	    private String subsidiaryName() { return subsidiaryName; }
+	    private String regionDependency() { return regionDependency; }
+	    
+	    public static String evalDependencyLogo(String incomingDependency) {
+	        for (ValidDependencyFormats logoType : ValidDependencyFormats.values()) {
+	        	if(logoType.subsidiaryName().equals(incomingDependency)){
+	        		return logoType.regionDependency();
+	        	}
+	        }
+	        return null;
+	    }
+		
+	}
 	public static CodeNumberFormats STATUS_CODE_FORMATS;
 	
 	private enum CodeNumberFormats {

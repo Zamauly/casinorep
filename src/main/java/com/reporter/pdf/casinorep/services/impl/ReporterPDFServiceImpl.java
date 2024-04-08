@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.reporter.pdf.casinorep.commons.ResourcesConstants;
+import com.reporter.pdf.casinorep.config.ResourcesProperties;
 import com.reporter.pdf.casinorep.dto.PDFReporterDTO;
 import com.reporter.pdf.casinorep.dto.PDFRequestDTO;
 import com.reporter.pdf.casinorep.prototype.ReporterPDFPrototype;
@@ -20,19 +22,20 @@ import com.reporter.pdf.casinorep.utils.ReporterDateTimeUtil;
 public class ReporterPDFServiceImpl implements ReporterPDFService {
 
 	private static Logger logger = LoggerFactory.getLogger(ReporterPDFServiceImpl.class);
-	
+
 	@Override
 	public PDFReporterDTO generatePDF(PDFRequestDTO dataToProcess) throws Throwable {
 		// TODO Auto-generated method stub
+
 		Date reportDate = ReporterDateTimeUtil.getDateFromString(dataToProcess.getReport_date(), "dd-mm-yyyy");
 		List<String> imageList = new ArrayList<String>(); 
 		imageList.add("/home/asus13/Documents/projects/casinorep/resources/images-api/test-1.png");
-		imageList.add("/home/asus13/Documents/projects/casinorep/resources/images-api/test-2.xnl");
+		imageList.add("/home/asus13/Documents/projects/casinorep/resources/images-api/test-2.jpeg");
 		imageList.forEach(imageItem -> {
 			if(!FileReporterUtil.validateImageFormat(imageItem)) throw new RuntimeException(ResourcesConstants.FORMAT_IMG_ERROR_MSG.concat(imageItem));
 		});
 		String reportName = FileReporterUtil.getDateFormatedFileName(dataToProcess.getReport_name(), reportDate);
-		ReporterPDFPrototype reporter = new ReporterPDFPrototype.ReporterPDFPrototypeBuilder("ASECO", imageList, "/home/asus13/Documents/projects/casinorep/resources/images-api/aseco.png")
+		ReporterPDFPrototype reporter = new ReporterPDFPrototype.ReporterPDFPrototypeBuilder("ASECO", imageList, FileReporterUtil.validateDependencyLogo(dataToProcess.getSubsidiary_name()))
 				.reportDate(reportDate)
 				.reportName(reportName)
 				.subsidiaryName(dataToProcess.getSubsidiary_name())
