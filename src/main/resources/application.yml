@@ -4,11 +4,18 @@ spring:
 logging:
  level:
   com.reporter.pdf.casinorep: TRACE
-
 resources:
  path:
-  url:'/home/asus13/Documents/projects/casinorep/resources/images-api/'
- files:
-  logo_aseco:'aseco.png'
-  logo_limp:'limp.png'
-  base_image_
+  url:'/home/asus13/Documents/projects/casinorep/resources'
+ base_images:
+  path: '/assets/img/basic/'
+  files_logo:
+   logo_aseco:'LogoAsecco.jpg'
+   logo_limpo:'Logolimposervices.jpg'
+  files_base:
+   base_image_1: 'ProductoCleaner_1.jpg'
+   base_image_2: 'ProductoCleaner_2.jpg'
+ documental_images:
+  path: '/documental/images/'
+ documental_pdfs:
+  path: '/documental/pdfs/'
