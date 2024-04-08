@@ -14,8 +14,8 @@ public class ReporterPropertiesSingleton {
     private ReporterPropertiesSingleton( ) {
         // The following code emulates slow initialization.
         try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) {
+            //Thread.sleep(1000);
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
