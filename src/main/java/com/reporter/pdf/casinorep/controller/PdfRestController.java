@@ -61,11 +61,13 @@ public class PdfRestController {
 
 		logger.debug("Post Req Reporter TEST type: {}", reqBody.getRequest_type());
 
-//		logger.debug("Post Req Reporter TEST name: {}", reqBody.getRequest_body().getReport_name());
+		logger.debug("Post Req Reporter TEST date: {}", reqBody.getRequest_date());
 
-		logger.debug("Post Req Reporter TEST key: {}", reqBody.getRequest_body().getSubsidiary_name());
+		logger.debug("Post Req Reporter TEST name: {}", reqBody.getRequest_body().getReport_name());
 
-		logger.debug("Post Req Reporter TEST key: {}", reqBody.getRequest_body().getReport_date());
+		logger.debug("Post Req Reporter TEST subsidiary: {}", reqBody.getRequest_body().getSubsidiary_name());
+
+		logger.debug("Post Req Reporter TEST report date: {}", reqBody.getRequest_body().getReport_date());
 
 		try {
 			PDFReporterDTO reporterDto = reporterService.generatePDF(reqBody.getRequest_body());

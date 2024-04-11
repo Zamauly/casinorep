@@ -6,13 +6,13 @@ import java.util.Objects;
 
 public class ReporterPDFPrototype implements Cloneable {
 	//All final attributes
-	private String reportName; // required
-	private String subsidiaryName; // required
+	private String reportName; // optional
+	private String subsidiaryName; // optional
 	//private final int age; // optional
 	private Date reportDate; // optional
-	private final String reportType;
-	private final List<String> defaultImageList; // optional
-	private final String logoPath; // optional
+	private final String reportType;// required
+	private final List<String> defaultImageList; // required
+	private final String logoPath; // required
 
 	private ReporterPDFPrototype(ReporterPDFPrototypeBuilder builder) {
 		this.reportName = builder.reportName;
@@ -118,10 +118,10 @@ public class ReporterPDFPrototype implements Cloneable {
 		//Return the finally constructed User object
 		public ReporterPDFPrototype build() {
 			ReporterPDFPrototype reporter =  new ReporterPDFPrototype(this);
-			validateUserObject(reporter);
+			validateReporterObject(reporter);
 			return reporter;
 		}
-		private void validateUserObject(ReporterPDFPrototype reporter) {
+		private void validateReporterObject(ReporterPDFPrototype reporter) {
 			//Do some basic validations to check
 			//if user object does not break any assumption of system
 		}

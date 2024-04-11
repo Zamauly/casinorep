@@ -2,10 +2,91 @@
 	"info": {
 		"_postman_id": "d08f0dfd-866d-43f2-9bc5-d52ea539fda3",
 		"name": "casinorep",
+		"description": "To test api prototype factory",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "28362522"
 	},
 	"item": [
+		{
+			"name": "PostClassEntityBody",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"request_type\" : \"auth_user\",\n    \"request_body\" : {\n        \"user_value\" : \"chuy13\",\n        \"user_key\" : \"p3rR1t4T\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/testcinco",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"testcinco"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "chuy",
+							"disabled": true
+						},
+						{
+							"key": "dato_test",
+							"value": "perrita",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostClassEntitySpecificBody",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"request_type\" : \"auth_user\",\n    \"request_body\" : {\n        \"user_value\" : \"chuy12\",\n        \"user_key\" : \"p3rR1t4T\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/testseis",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"testseis"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "chuy",
+							"disabled": true
+						},
+						{
+							"key": "dato_test",
+							"value": "perrita",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "PostClassBody",
 			"request": {
@@ -29,6 +110,46 @@
 					"port": "8080",
 					"path": [
 						"testcuatro"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "chuy",
+							"disabled": true
+						},
+						{
+							"key": "dato_test",
+							"value": "perrita",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CallGenerateOnePDF",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"request_type\" : \"generate-pdf\",\n    \"request_date\" : \"08-04-2024\",\n    \"request_body\" : {\n        \"report_name\" : \"LazVenturas\",\n        \"subsidiary_name\" : \"LazVenturas\", \n        \"report_date\" : \"23-01-2024\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pdf-report",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pdf-report"
 					],
 					"query": [
 						{
@@ -141,6 +262,37 @@
 					"port": "8080",
 					"path": [
 						"testuno"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSimple Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_value\" : \"chuy13\",\n    \"user_key\" : \"p3rR1t4T\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pdf-report",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pdf-report"
 					]
 				}
 			},

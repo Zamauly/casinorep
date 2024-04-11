@@ -31,4 +31,10 @@ public class ReporterPropertiesSingleton {
 		return appResourcesProperties;
 	}
 
+	public void setAppResourcesProperties(ResourcesProperties appResourcesProperties) {
+        if (this.appResourcesProperties == null) {
+        	this.appResourcesProperties = appResourcesProperties;
+        }
+	}
+
 }

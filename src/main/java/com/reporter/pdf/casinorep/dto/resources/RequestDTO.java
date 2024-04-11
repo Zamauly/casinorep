@@ -3,12 +3,14 @@ package com.reporter.pdf.casinorep.dto.resources;
 public class RequestDTO<T> {
 
 	private String request_type;
+	private String request_date;
 	private T request_body;
 	
-	public RequestDTO(String request_type, T request_body) {
+	public RequestDTO(String request_type, String request_date, T request_body) {
 		super();
 		this.request_type = request_type;
 		this.request_body = request_body;
+		this.request_date = request_date;
 	}
 
 	public String getRequest_type() {
@@ -25,6 +27,14 @@ public class RequestDTO<T> {
 
 	public void setRequest_body(T request_body) {
 		this.request_body = request_body;
+	}
+
+	public String getRequest_date() {
+		return request_date;
+	}
+
+	public void setRequest_date(String request_date) {
+		this.request_date = request_date;
 	}
 	
 }

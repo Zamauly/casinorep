@@ -2,6 +2,7 @@ package com.reporter.pdf.casinorep.commons;
 
 
 public class ResourcesConstants {
+	public static final String PDF_TYPE= "PDF";
 	public static final String DOT_CHAR= ".";
 	public static final String ERROR= "ERROR";
 	public static final String FORMAT_IMG_ERROR_MSG= "No se puede procesar este tipo de imagen: ";

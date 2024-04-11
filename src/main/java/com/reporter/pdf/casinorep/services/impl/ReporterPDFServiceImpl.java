@@ -6,13 +6,16 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.reporter.pdf.casinorep.commons.ResourcesConstants;
+import com.reporter.pdf.casinorep.config.ResourcesProperties;
 import com.reporter.pdf.casinorep.dto.PDFReporterDTO;
 import com.reporter.pdf.casinorep.dto.PDFRequestDTO;
 import com.reporter.pdf.casinorep.prototype.ReporterPDFPrototype;
 import com.reporter.pdf.casinorep.services.ReporterPDFService;
+import com.reporter.pdf.casinorep.singleton.ReporterPropertiesSingleton;
 import com.reporter.pdf.casinorep.utils.FileReporterUtil;
 import com.reporter.pdf.casinorep.utils.ReporterDateTimeUtil;
 
@@ -20,7 +23,10 @@ import com.reporter.pdf.casinorep.utils.ReporterDateTimeUtil;
 public class ReporterPDFServiceImpl implements ReporterPDFService {
 
 	private static Logger logger = LoggerFactory.getLogger(ReporterPDFServiceImpl.class);
-
+	
+	@Autowired
+    private ResourcesProperties appResourcesProperties;
+	
 	@Override
 	public PDFReporterDTO generatePDF(PDFRequestDTO dataToProcess) throws Throwable {
 		// TODO Auto-generated method stub
@@ -32,8 +38,15 @@ public class ReporterPDFServiceImpl implements ReporterPDFService {
 		imageList.forEach(imageItem -> {
 			if(!FileReporterUtil.validateImageFormat(imageItem)) throw new RuntimeException(ResourcesConstants.FORMAT_IMG_ERROR_MSG.concat(imageItem));
 		});
+		//logger.debug("Post Properties Singleton Reporter TEST type: {}", ReporterPropertiesSingleton.getInstance().getAppResourcesProperties().getBase_images().getLogo_aseco());
+
+		ReporterPropertiesSingleton.getInstance().setAppResourcesProperties(appResourcesProperties);
+		
 		String reportName = FileReporterUtil.getDateFormatedFileName(dataToProcess.getReport_name(), reportDate);
-		ReporterPDFPrototype reporter = new ReporterPDFPrototype.ReporterPDFPrototypeBuilder("ASECO", imageList, FileReporterUtil.validateDependencyLogo(dataToProcess.getSubsidiary_name()))
+		String pathToLogoFile = FileReporterUtil.validateDependencyLogo(dataToProcess.getSubsidiary_name());
+		logger.debug("Post reporter logo path: {}", pathToLogoFile);
+		List<String> testListBaseImgs = FileReporterUtil.getBaseImages(dataToProcess.getSubsidiary_name());
+		ReporterPDFPrototype reporter = new ReporterPDFPrototype.ReporterPDFPrototypeBuilder(ResourcesConstants.PDF_TYPE, testListBaseImgs, pathToLogoFile)
 				.reportDate(reportDate)
 				.reportName(reportName)
 				.subsidiaryName(dataToProcess.getSubsidiary_name())
@@ -77,6 +90,10 @@ public class ReporterPDFServiceImpl implements ReporterPDFService {
 		logger.debug("Post DTO Reporter TEST hashCode: {}", reporterDto.hashCode());
 		
 		return reporterDto; 
+	}
+
+	public ResourcesProperties getAppResourcesProperties() {
+		return appResourcesProperties;
 	}
 
 }
